@@ -1,0 +1,90 @@
+media: images
+content:
+  - name: site
+    label: Website content
+    type: file
+    path: content.json
+    format: json
+    fields:
+      - name: site
+        label: Links, photo and CV
+        type: object
+        fields:
+          - {name: email, label: Email address, type: string}
+          - {name: linkedin, label: LinkedIn URL, type: string}
+          - {name: instagram, label: Instagram URL, type: string}
+          - {name: facebook, label: Facebook URL, type: string}
+          - {name: portraitUrl, label: Portrait photo, type: image}
+          - {name: cvUrl, label: CV (PDF), type: file}
+      - name: hero
+        label: Homepage intro
+        type: object
+        fields:
+          - {name: role, label: Role line, type: string}
+          - {name: statement, label: Statement, type: string}
+          - {name: intro, label: Intro sentence, type: text}
+      - name: about
+        label: About me
+        type: object
+        fields:
+          - {name: paragraphs, label: Paragraphs, type: text, list: true}
+      - name: journey
+        label: Academic journey
+        type: object
+        list: true
+        fields:
+          - {name: period, label: Period, type: string}
+          - {name: title, label: Title, type: string}
+          - {name: detail, label: Details, type: string}
+          - {name: future, label: Future stage, type: boolean}
+      - name: topics
+        label: Research interests (popup text)
+        type: object
+        list: true
+        fields:
+          - {name: name, label: Topic name (keep exactly as on the card), type: string}
+          - {name: text, label: Description, type: text}
+      - name: articles
+        label: Insights and articles
+        type: object
+        list: true
+        fields:
+          - {name: tag, label: Category, type: string}
+          - {name: title, label: Title, type: string}
+          - {name: status, label: Status line, type: string}
+      - name: achievements
+        label: Academic achievements
+        type: object
+        list: true
+        fields:
+          - {name: title, label: Title, type: string}
+          - {name: year, label: Year, type: string}
+          - {name: detail, label: Details, type: text}
+          - {name: link, label: Link (https://)  , type: string}
+      - name: projects
+        label: Research projects and publications
+        type: object
+        list: true
+        fields:
+          - {name: title, label: Title, type: string}
+          - {name: year, label: Year, type: string}
+          - {name: detail, label: Details, type: text}
+          - {name: link, label: Link (https://), type: string}
+      - name: presentations
+        label: Conference presentations
+        type: object
+        list: true
+        fields:
+          - {name: title, label: Title, type: string}
+          - {name: year, label: Year, type: string}
+          - {name: detail, label: Details, type: text}
+          - {name: link, label: Link (https://), type: string}
+      - name: leadership
+        label: Leadership and community
+        type: object
+        list: true
+        fields:
+          - {name: title, label: Title, type: string}
+          - {name: year, label: Year, type: string}
+          - {name: detail, label: Details, type: text}
+          - {name: link, label: Link (https://), type: string}
