@@ -1,11 +1,9 @@
 {
   "site": {
+    "email": "gauravsingh26996@gmail.com",
     "linkedin": "https://www.linkedin.com/in/gauravs51/",
     "instagram": "https://www.instagram.com/gauravs_84/",
-    "facebook": "https://www.facebook.com/gauravs84",
-    "email": "",
-    "cvUrl": "",
-    "portraitUrl": ""
+    "facebook": "https://www.facebook.com/gauravs84"
   },
   "hero": {
     "role": "Medical Student | Aspiring Physician | Research Enthusiast",
@@ -76,9 +74,5 @@
       "title": "Medical Education in the Digital Age",
       "status": "Planned article · not yet published"
     }
-  ],
-  "achievements": [],
-  "projects": [],
-  "presentations": [],
-  "leadership": []
+  ]
 }
