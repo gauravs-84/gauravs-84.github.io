@@ -1,0 +1,84 @@
+{
+  "site": {
+    "linkedin": "https://www.linkedin.com/in/gauravs51/",
+    "instagram": "https://www.instagram.com/gauravs_84/",
+    "facebook": "https://www.facebook.com/gauravs84",
+    "email": "",
+    "cvUrl": "",
+    "portraitUrl": ""
+  },
+  "hero": {
+    "role": "Medical Student | Aspiring Physician | Research Enthusiast",
+    "statement": "Medicine. Research. Purpose.",
+    "intro": "Building a future in medicine through knowledge, compassion and continuous learning."
+  },
+  "about": {
+    "paragraphs": [
+      "I am Gaurav Singh, a final-year MBBS student at Kathmandu Medical College, Nepal. My journey in medicine is shaped by curiosity for clinical science, appreciation for evidence-based practice and a commitment to continuous learning.",
+      "My interests span cardiovascular medicine, research, antimicrobial resistance, public health, medical education and healthcare innovation."
+    ]
+  },
+  "journey": [
+    {
+      "period": "2022 – Present",
+      "title": "MBBS",
+      "detail": "Kathmandu Medical College. Ongoing",
+      "future": false
+    },
+    {
+      "period": "Future",
+      "title": "Internship & Clinical Training",
+      "detail": "Planned next stage",
+      "future": true
+    },
+    {
+      "period": "Future Aspiration",
+      "title": "Postgraduate Training",
+      "detail": "Specialization aspiration",
+      "future": true
+    }
+  ],
+  "topics": [
+    {
+      "name": "Clinical Medicine",
+      "text": "An academic interest in clinical reasoning, patient-centred learning and evidence-based practice. Details can be expanded as verified work is available."
+    },
+    {
+      "name": "Cardiovascular Medicine",
+      "text": "An academic interest in cardiovascular physiology, prevention and clinical care. This section does not imply specialist qualifications."
+    },
+    {
+      "name": "Antimicrobial Resistance",
+      "text": "An academic interest in antimicrobial stewardship, resistance patterns and public-health implications."
+    },
+    {
+      "name": "Public Health",
+      "text": "An academic interest in prevention, health education, community well-being and population health."
+    },
+    {
+      "name": "Medical Education",
+      "text": "An academic interest in learning methods, clinical teaching and responsible use of technology in healthcare education."
+    }
+  ],
+  "articles": [
+    {
+      "tag": "Healthcare",
+      "title": "The Future of Healthcare in Nepal",
+      "status": "Planned article · not yet published"
+    },
+    {
+      "tag": "Research",
+      "title": "Antimicrobial Resistance: A Growing Threat",
+      "status": "Planned article · not yet published"
+    },
+    {
+      "tag": "Education",
+      "title": "Medical Education in the Digital Age",
+      "status": "Planned article · not yet published"
+    }
+  ],
+  "achievements": [],
+  "projects": [],
+  "presentations": [],
+  "leadership": []
+}
