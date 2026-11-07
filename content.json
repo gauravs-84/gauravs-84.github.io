@@ -3,11 +3,12 @@
     "email": "gauravsingh26996@gmail.com",
     "linkedin": "https://www.linkedin.com/in/gauravs51/",
     "instagram": "https://www.instagram.com/gauravs_84/",
-    "facebook": "https://www.facebook.com/gauravs84"
+    "facebook": "https://www.facebook.com/gauravs84",
+    "portraitUrl": "/images/IMG_20261107_105125.jpg"
   },
   "hero": {
     "role": "Medical Student | Aspiring Physician | Research Enthusiast",
-    "statement": "Medicine. Research. Purpose.",
+    "statement": "Learning. Healing. Researching.",
     "intro": "Building a future in medicine through knowledge, compassion and continuous learning."
   },
   "about": {
@@ -18,21 +19,21 @@
   },
   "journey": [
     {
-      "period": "2022 – Present",
+      "period": "2019-2021",
+      "title": "Plus Two (Biology) ",
+      "detail": "St. Xavier's College ",
+      "future": false
+    },
+    {
+      "period": "2022-Present",
       "title": "MBBS",
-      "detail": "Kathmandu Medical College. Ongoing",
+      "detail": "Kathmandu Medical College",
       "future": false
     },
     {
       "period": "Future",
       "title": "Internship & Clinical Training",
       "detail": "Planned next stage",
-      "future": true
-    },
-    {
-      "period": "Future Aspiration",
-      "title": "Postgraduate Training",
-      "detail": "Specialization aspiration",
       "future": true
     }
   ],
