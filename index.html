@@ -80,6 +80,23 @@ const SITE_CONFIG = {
   portraitUrl: '' // e.g. 'images/gaurav.jpg' -- your actual portrait
 };
 const $ = selector => document.querySelector(selector);
+const DATA = {};
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+function applyContent(c){
+  const hh=c.hero||{};
+  [['.hero .role',hh.role],['.hero .statement',hh.statement],['.hero .intro',hh.intro]].forEach(([s,v])=>{if(v)$(s).textContent=v});
+  const ab=(c.about&&c.about.paragraphs)||[];
+  if(ab.length){const box=$('#about .about-grid > div:nth-child(2)');box.querySelectorAll('p').forEach(p=>p.remove());const btn=box.querySelector('a.btn');ab.forEach(t=>box.insertBefore(el('p',null,t),btn));}
+  const steps=c.journey||[];
+  if(steps.length){const tl=$('.timeline');tl.textContent='';const ic=['i-cap','i-calendar','i-star'];
+    steps.forEach((s,i)=>{const d=el('div','step'+(s.future?' future':''));const sym=el('div','step-symbol');sym.innerHTML='<svg class="svgicon"><use href="#'+ic[Math.min(i,2)]+'"/></svg>';d.append(sym,el('span',null,s.period),el('strong',null,s.title),el('p',null,s.detail));tl.append(d)});}
+  const arts=c.articles||[];
+  if(arts.length){const box=$('.articles'),imgs=[...box.querySelectorAll('img')].map(i=>i.src);box.textContent='';
+    arts.forEach((a,i)=>{const art=el('article','article');const im=el('img');im.loading='lazy';im.alt='';im.src=imgs[i%imgs.length];const cc=el('div','article-content');cc.append(el('span','article-tag',a.tag),el('h3',null,a.title),el('p',null,a.status));art.append(im,cc);box.append(art)});}
+  DATA.topics=Object.fromEntries((c.topics||[]).map(t=>[t.name,t.text]));
+  DATA.lists=[['Academic achievements',c.achievements],['Research projects',c.projects],['Conference presentations',c.presentations],['Leadership & community',c.leadership]].filter(g=>g[1]&&g[1].length);
+}
+function boot(){
 $('#year').textContent = new Date().getFullYear();
 const menuButton = $('#menuButton'); const mainNav = $('#mainNav');
 menuButton.addEventListener('click', () => { const open = mainNav.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); });
@@ -87,6 +104,8 @@ mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { m
 const dialog = $('#infoDialog');
 const closeDialog = () => dialog.close(); $('#closeDialog').addEventListener('click', closeDialog);
 const showInfo = (title, content, subtitle = 'WEBSITE PREVIEW') => { $('#dialogTitle').textContent=title; $('#dialogLabel').textContent=subtitle; $('#dialogText').textContent=content; dialog.showModal(); };
+const showLists=title=>{const box=$('#dialogText');$('#dialogTitle').textContent=title;$('#dialogLabel').textContent='GAURAV SINGH';box.textContent='';
+ DATA.lists.forEach(([name,items])=>{box.append(el('h3',null,name));const ul=el('ul');items.forEach(it=>{const li=el('li');li.append(el('strong',null,it.title));const meta=[it.year,it.detail].filter(Boolean).join(' - ');if(meta)li.append(document.createTextNode(' '+meta));if(/^https:\/\//i.test(it.link||'')){const a=el('a',null,' Link');a.href=it.link;a.target='_blank';a.rel='noopener noreferrer';li.append(a)}ul.append(li)});box.append(ul)});dialog.showModal()};
 const topics={
  'Clinical Medicine':'An academic interest in clinical reasoning, patient-centred learning and evidence-based practice. Details can be expanded as verified work is available.',
  'Cardiovascular Medicine':'An academic interest in cardiovascular physiology, prevention and clinical care. This section does not imply specialist qualifications.',
@@ -94,6 +113,7 @@ const topics={
  'Public Health':'An academic interest in prevention, health education, community well-being and population health.',
  'Medical Education':'An academic interest in learning methods, clinical teaching and responsible use of technology in healthcare education.'
 };
+Object.assign(topics,DATA.topics||{});
 document.querySelectorAll('[data-topic]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();showInfo(link.dataset.topic,topics[link.dataset.topic],'ACADEMIC INTEREST');}));
 const info={
  research:['Research & Academic Interests','This area will showcase your verified research projects, methods, collaborators, contributions and publication status when you add them. Current cards describe interests only.'],
@@ -102,12 +122,14 @@ const info={
  privacy:['Privacy Policy','A website-specific privacy policy must be drafted and published before collecting personal information through a live form or analytics.'],
  terms:['Terms of Use','Website terms should be finalized before launch. The current site is an educational personal portfolio, not a medical advice service.']
 };
-document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();const value=info[btn.dataset.open];showInfo(value[0],value[1]);}));
+document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();const value=info[btn.dataset.open];if(btn.dataset.open==='achievements'&&DATA.lists&&DATA.lists.length){showLists(value[0]);return;}showInfo(value[0],value[1]);}));
 document.querySelectorAll('[data-social]').forEach(link=>{const name=link.dataset.social,url=SITE_CONFIG[name];if(/^https:\/\//i.test(url)){link.href=url;link.target='_blank';link.rel='noopener noreferrer'}else{link.setAttribute('aria-disabled','true');link.title=name+' link not configured';link.addEventListener('click',e=>{e.preventDefault();showInfo('Profile not connected','Add your verified '+name+' profile URL in SITE_CONFIG to activate this icon.');});}});
 document.querySelectorAll('[data-email]').forEach(link=>{if(SITE_CONFIG.email){link.href='mailto:'+SITE_CONFIG.email}else{link.setAttribute('aria-disabled','true');link.addEventListener('click',e=>{e.preventDefault();showInfo('Email not configured','Enter your professional email in SITE_CONFIG to activate the email icon.');});}});
 if(SITE_CONFIG.email) $('#emailText').textContent=SITE_CONFIG.email;
 document.querySelectorAll('[data-cv]').forEach(link=>{if(SITE_CONFIG.cvUrl){link.href=SITE_CONFIG.cvUrl;link.setAttribute('download','Gaurav-Singh-CV.pdf')}else{link.classList.add('disabled');link.addEventListener('click',e=>{e.preventDefault();showInfo('CV not yet uploaded','Add the path of your verified CV PDF in SITE_CONFIG.cvUrl to enable downloading.');});}});
 if(SITE_CONFIG.portraitUrl){for(const id of ['heroImg','aboutImg']){const img=document.getElementById(id);img.src=SITE_CONFIG.portraitUrl;img.alt='Gaurav Singh portrait';}$('#portraitLabel').remove();}
 $('#messageForm').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget; if(!form.reportValidity())return;if(!SITE_CONFIG.email){$('#formStatus').textContent='Message not sent: configure an email address and form provider before launch.';return;}const data=new FormData(form);const subject=encodeURIComponent('[Website] '+data.get('subject'));const body=encodeURIComponent('From: '+data.get('name')+'\nReply-to: '+data.get('email')+'\n\n'+data.get('message'));$('#formStatus').textContent='Opening your email application. Press Send there to deliver your message.';window.location.href='mailto:'+SITE_CONFIG.email+'?subject='+subject+'&body='+body;});
+}
+fetch('content.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(c=>{Object.assign(SITE_CONFIG,c.site||{});applyContent(c)}).catch(()=>{}).then(boot);
 </script>
 </body></html>
